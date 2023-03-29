@@ -32,8 +32,7 @@ docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" nisum/myapp
 ![digrama-config.jpg](assets%2Fdigrama-config.jpg)
 
 ### Controlador
-![digrama-usuario-repository.jpg](assets%2Fdigrama-usuario-repository.jpg)
-
+![digrama-usuario-controler.jpg](assets%2Fdigrama-usuario-controler.jpg)
 ### Validaciones
 ![digrama-solucion.jpg](assets%2Fdigrama-solucion.jpg)
 
