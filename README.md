@@ -1,4 +1,4 @@
-# Ejecicio de Java (Nisum)
+# Ejercicio de Java (Nisum)
  Autor: Orlando Utrera 
 
 ## Prerequisito
@@ -9,8 +9,8 @@
 
 ## Instalacion
 git clone https://github.com/outrera/nisum.git
-
-### cambiar al directorio del proyecto
+ 
+nota: cambiar al directorio del proyecto
 
 cd nisum
 
