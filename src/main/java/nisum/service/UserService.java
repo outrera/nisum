@@ -7,6 +7,7 @@ import nisum.utils.Validations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import nisum.exception.GenericException;
@@ -73,9 +74,7 @@ public class UserService {
 		return userRepository.findAll();
 	}
 
-	public User get(Long id) {
-		return userRepository.findById(id).get();
-	}
+
 
 	public void save(User user) {
 		userRepository.save(user);
@@ -90,16 +89,39 @@ public class UserService {
 	}
 
 
-
-
-
-
-
 	public List<User> getAllUsers() {
 		return new ArrayList<>((Collection) userRepository.findAll());
 	}
 
 
+	public Optional<Object> deleteById2(Long id) {
+		return Optional.of(userRepository.findById(id)
+				.map(user -> {
+					userRepository.deleteById(id);
+					return ResponseEntity.ok(user);
+				})
+				.orElseGet(() -> ResponseEntity.notFound().build()));
+	}
+
+	public ResponseEntity<User> updateUser(Long id, User user) 	{
+		return userRepository.findById(id)
+				.map(x -> {
+					x.setName(user.getName());
+					x.setEmail(user.getEmail());
+					return ResponseEntity.ok(userRepository.save(x));
+				})
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
+
+	public Optional<User> findByEmail(String email)  {
+		return userRepository.findByEmail(email);
+	}
+
+	public ResponseEntity<User> getUserById(Long id) {
+		return userRepository.findById(id)
+				.map(ResponseEntity::ok)
+				.orElseGet(() -> ResponseEntity.notFound().build());
+	}
 }
 
 

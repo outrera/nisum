@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by IntelliJ IDEA.
@@ -31,10 +32,6 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private UserRepository userRepository;
-
-
 	public UserController(UserService userService) {
 	}
 
@@ -51,42 +48,22 @@ public class UserController {
 	public User saveUser(@RequestBody @Valid User user) {
 
 		userService.createUser(user);
-		User UserEntity = userRepository.findByEmail(user.getEmail()).get();
+		User UserEntity = userService.findByEmail(user.getEmail()).get();
 		return UserEntity;
 	}
 
 
     @ApiOperation(value = "Search User by Id", produces = "application/json")
 	@GetMapping("/{id}")
-	public ResponseEntity<User> getUserById(@PathVariable Long id) {
-		return userRepository.findById(id)
-				.map(ResponseEntity::ok)
-				.orElseGet(() -> ResponseEntity.notFound().build());
-	}
+	public ResponseEntity<User> getUserById(@PathVariable Long id) { return userService.getUserById(id); }
 
 	@ApiOperation(value = "Put User by Id", produces = "application/json")
 	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid User user) {
-		return userRepository.findById(id)
-				.map(x -> {
-					x.setName(user.getName());
-					x.setEmail(user.getEmail());
-					return ResponseEntity.ok(userService.update(x));
-				})
-				.orElseGet(() -> ResponseEntity.notFound().build());
-	}
-
+	public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody @Valid User user) { return userService.updateUser(id, user);	}
 	@ApiOperation(value = "Delete User by Id", produces = "application/json")
 	@DeleteMapping("/{id}")
-	public ResponseEntity<User> deleteUser(@PathVariable Long id) {
-		return userRepository.findById(id)
-				.map(user -> {
-					userService.deleteById(id);
-					return ResponseEntity.ok(user);
-				})
-				.orElseGet(() -> ResponseEntity.notFound().build());
+	public Optional<Object> deleteUser(@PathVariable Long id) {
+		return userService.deleteById2(id);
 	}
-
-
 
 }
