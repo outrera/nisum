@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="nisum.controller.UserControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-29T00:18:31" hostname="Volido-B450MX" time="0.428">
+<testsuite name="nisum.controller.UserControllerTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-03-29T04:36:41" hostname="Volido-B450MX" time="0.394">
   <properties/>
-  <testcase name="testAddUser()" classname="nisum.controller.UserControllerTest" time="0.428"/>
+  <testcase name="testAddUser()" classname="nisum.controller.UserControllerTest" time="0.394"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

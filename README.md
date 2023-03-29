@@ -18,3 +18,6 @@ cd nisum
 ## Compilar y Ejecutar el proyecto api 
 gradle bootRun
 
+## Docker run
+docker build -t nisum/myapp .
+docker run -p 8080:8080 -e "JAVA_OPTS=-Ddebug -Xmx128m" nisum/myapp
