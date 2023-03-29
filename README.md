@@ -15,7 +15,7 @@ nota: cambiar al directorio del proyecto
 cd nisum
 
 
-## Compilar y Ejecutar el proyecto api 
+## Compilar y Ejecutar el proyecto api (Antes dockerizar)
 gradle bootRun
 
 ## Docker Build
