@@ -15,6 +15,6 @@ git clone https://github.com/outrera/nisum.git
 cd nisum
 
 
-## Correr el proyecto api ejecutar
+## Compilar y Ejecutar el proyecto api 
 gradle bootRun
 
